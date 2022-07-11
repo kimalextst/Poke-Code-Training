@@ -1,9 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.detalhes.DetailsActivity">
+    tools:context=".ui.characterdetail.CharacterDetailsActivity">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ivCharacterPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/rick_morty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvNomeLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_32"
+        android:layout_marginStart="@dimen/margin_16"
+        android:text="Nome:"
+        android:textStyle="italic"
+        app:layout_constraintTop_toBottomOf="@+id/ivCharacterPhoto"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Valor generico"
+        android:layout_marginStart="@dimen/margin_8"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/tvNomeLbl"
+        app:layout_constraintTop_toTopOf="@+id/tvNomeLbl"
+        app:layout_constraintBottom_toBottomOf="@id/tvNomeLbl"/>
+
+    <TextView
+        android:id="@+id/tvStatusLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_8"
+        android:layout_marginStart="@dimen/margin_16"
+        android:text="Status:"
+        android:textStyle="italic"
+        app:layout_constraintTop_toBottomOf="@+id/tvNomeLbl"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Valor generico"
+        android:layout_marginStart="@dimen/margin_8"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/tvStatusLbl"
+        app:layout_constraintTop_toTopOf="@+id/tvStatusLbl"
+        app:layout_constraintBottom_toBottomOf="@id/tvStatusLbl"/>
+
+    <TextView
+        android:id="@+id/tvEspecieLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_8"
+        android:layout_marginStart="@dimen/margin_16"
+        android:text="Espécie:"
+        android:textStyle="italic"
+        app:layout_constraintTop_toBottomOf="@+id/tvStatusLbl"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvEspecie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Valor generico"
+        android:layout_marginStart="@dimen/margin_8"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/tvEspecieLbl"
+        app:layout_constraintTop_toTopOf="@+id/tvEspecieLbl"
+        app:layout_constraintBottom_toBottomOf="@id/tvEspecieLbl"/>
+
+    <TextView
+        android:id="@+id/tvGeneroLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_8"
+        android:layout_marginStart="@dimen/margin_16"
+        android:text="Gênero:"
+        android:textStyle="italic"
+        app:layout_constraintTop_toBottomOf="@+id/tvEspecieLbl"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvGenero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Valor generico"
+        android:layout_marginStart="@dimen/margin_8"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/tvGeneroLbl"
+        app:layout_constraintTop_toTopOf="@+id/tvGeneroLbl"
+        app:layout_constraintBottom_toBottomOf="@id/tvGeneroLbl"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>

@@ -22,6 +22,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/tvCharacterName"
                     android:layout_width="@dimen/length_150"
                     android:layout_height="@dimen/length_30"
                     android:background="@color/blackish_blue"

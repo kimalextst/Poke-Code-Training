@@ -8,7 +8,7 @@ import br.com.zup.rickandmorty.domain.repository.CharacterRepository
 class CharacterUseCase(application: Application) {
     private val characterRepository = CharacterRepository()
 
-    suspend fun getAllMoviesNetwork(): ViewState<List<CharacterResult>> {
+    suspend fun getAllCharactersNetwork(): ViewState<List<CharacterResult>> {
         return try {
             val response = characterRepository.getAllCharactersNetwork()
             ViewState.Success (response.characterResults)

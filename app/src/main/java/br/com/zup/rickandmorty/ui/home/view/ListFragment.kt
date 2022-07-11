@@ -6,19 +6,29 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import br.com.zup.movieflix.ui.viewstate.ViewState
+import br.com.zup.rickandmorty.CHARACTER_KEY
+import br.com.zup.rickandmorty.data.model.CharacterResult
 import br.com.zup.rickandmorty.databinding.FragmentListBinding
-import br.com.zup.rickandmorty.ui.detalhes.DetailsActivity
+import br.com.zup.rickandmorty.ui.characterdetail.CharacterDetailsActivity
 import br.com.zup.rickandmorty.ui.home.adapter.CharacterAdapter
-import br.com.zup.rickandmorty.domain.model.Character
+import br.com.zup.rickandmorty.ui.home.viewmodel.CharacterListViewModel
 
 class ListFragment : Fragment() {
     class FotosFragment : Fragment() {
 
         private lateinit var binding: FragmentListBinding
 
+        private val viewModel: CharacterListViewModel by lazy {
+            ViewModelProvider(this)[CharacterListViewModel::class.java]
+        }
+
         private val adapter: CharacterAdapter by lazy {
-            CharacterAdapter(arrayListOf(), this::irParaDetalhe)
+            CharacterAdapter(arrayListOf(), this::goToCharacterDetail)
         }
 
         override fun onCreateView(
@@ -32,18 +42,43 @@ class ListFragment : Fragment() {
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
 
-            exibirRecyclerView()
+            viewModel.getAllCharacters()
+            initObserver()
+            showRecyclerView()
         }
 
-        private fun exibirRecyclerView() {
+        private fun initObserver() {
+            viewModel.characterList.observe(this.viewLifecycleOwner) {
+
+                when (it) {
+                    is ViewState.Success -> {
+                        adapter.updateCharacterList(it.data.toMutableList())
+                    }
+                    is ViewState.Error -> {
+                        Toast.makeText(
+                            context,
+                            "${it.throwable.message}",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    else -> {}
+                }
+            }
+        }
+
+
+        private fun showRecyclerView() {
 
             binding.rvCharacter.adapter = adapter
             val layoutManager = GridLayoutManager(requireContext(),2)
             binding.rvCharacter.layoutManager = layoutManager
         }
 
-        private fun irParaDetalhe(character: Character) {
-            val intent = Intent(requireContext(), DetailsActivity::class.java)
+        private fun goToCharacterDetail(character: CharacterResult) {
+            val bundle = bundleOf(CHARACTER_KEY to character)
+            val intent = Intent(requireContext(), CharacterDetailsActivity::class.java).apply {
+                putExtra(CHARACTER_KEY,bundle)
+            }
             startActivity(intent)
         }
     }
