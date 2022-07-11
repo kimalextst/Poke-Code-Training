@@ -6,10 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.com.zup.rickandmorty.CHARACTER_KEY
-import br.com.zup.rickandmorty.R
 import br.com.zup.rickandmorty.data.model.CharacterResult
 import br.com.zup.rickandmorty.databinding.FragmentCharacterDetailBinding
-import br.com.zup.rickandmorty.databinding.FragmentListBinding
 import com.squareup.picasso.Picasso
 
 class CharacterDetailFragment : Fragment() {

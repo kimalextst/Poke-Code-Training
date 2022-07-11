@@ -1,10 +1,8 @@
 package br.com.zup.rickandmorty.ui.home.viewmodel
 
-import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
-import br.com.zup.movieflix.ui.viewstate.ViewState
-import br.com.zup.rickandmorty.data.datasource.remote.RetrofitService
+import br.com.zup.rickandmorty.ui.viewstate.ViewState
 import br.com.zup.rickandmorty.data.model.CharacterResult
 import br.com.zup.rickandmorty.domain.usecase.CharacterUseCase
 import kotlinx.coroutines.Dispatchers

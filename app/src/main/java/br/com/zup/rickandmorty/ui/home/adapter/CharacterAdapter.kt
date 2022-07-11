@@ -3,13 +3,9 @@ package br.com.zup.rickandmorty.ui.home.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import br.com.zup.movieflix.ui.viewstate.ViewState
-import br.com.zup.rickandmorty.JPEG
-import br.com.zup.rickandmorty.URL_BASE_IMG
 import br.com.zup.rickandmorty.data.model.CharacterResult
 import br.com.zup.rickandmorty.databinding.CharacterItemBinding
 import com.squareup.picasso.Picasso
-import kotlin.reflect.KFunction1
 
 class CharacterAdapter(
     private var characterList: MutableList<CharacterResult>,

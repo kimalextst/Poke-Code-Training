@@ -1,7 +1,6 @@
 package br.com.zup.rickandmorty.domain.usecase
 
-import android.app.Application
-import br.com.zup.movieflix.ui.viewstate.ViewState
+import br.com.zup.rickandmorty.ui.viewstate.ViewState
 import br.com.zup.rickandmorty.data.model.CharacterResult
 import br.com.zup.rickandmorty.domain.repository.CharacterRepository
 

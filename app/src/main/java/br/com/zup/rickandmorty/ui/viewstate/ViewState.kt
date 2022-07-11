@@ -1,4 +1,4 @@
-package br.com.zup.movieflix.ui.viewstate
+package br.com.zup.rickandmorty.ui.viewstate
 
 
 sealed class ViewState<out T> {

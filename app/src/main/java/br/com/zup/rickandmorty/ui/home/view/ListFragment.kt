@@ -1,6 +1,5 @@
 package br.com.zup.rickandmorty.ui.home.view
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,7 +10,7 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.GridLayoutManager
-import br.com.zup.movieflix.ui.viewstate.ViewState
+import br.com.zup.rickandmorty.ui.viewstate.ViewState
 import br.com.zup.rickandmorty.CHARACTER_KEY
 import br.com.zup.rickandmorty.R
 import br.com.zup.rickandmorty.data.model.CharacterResult
