@@ -1,4 +1,4 @@
-package br.com.zup.rickandmorty.detalhes
+package br.com.zup.rickandmorty.ui.detalhes
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

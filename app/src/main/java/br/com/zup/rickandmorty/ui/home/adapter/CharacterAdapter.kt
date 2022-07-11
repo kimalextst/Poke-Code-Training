@@ -1,11 +1,10 @@
-package br.com.zup.rickandmorty.home.adapter
+package br.com.zup.rickandmorty.ui.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import br.com.zup.rickandmorty.R
 import br.com.zup.rickandmorty.databinding.CharacterItemBinding
-import br.com.zup.rickandmorty.home.model.Character
+import br.com.zup.rickandmorty.domain.model.Character
 
 class CharacterAdapter (
     private var characterList: MutableList<Character>,

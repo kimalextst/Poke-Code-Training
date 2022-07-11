@@ -1,4 +1,4 @@
-package br.com.zup.rickandmorty.home.view
+package br.com.zup.rickandmorty.ui.home.view
 
 import android.os.Bundle
 import android.view.MenuItem

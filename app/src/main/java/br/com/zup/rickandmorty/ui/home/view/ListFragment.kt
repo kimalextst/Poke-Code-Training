@@ -1,4 +1,4 @@
-package br.com.zup.rickandmorty.home.view
+package br.com.zup.rickandmorty.ui.home.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import br.com.zup.rickandmorty.databinding.FragmentListBinding
-import br.com.zup.rickandmorty.detalhes.DetailsActivity
-import br.com.zup.rickandmorty.home.adapter.CharacterAdapter
-import br.com.zup.rickandmorty.home.model.Character
+import br.com.zup.rickandmorty.ui.detalhes.DetailsActivity
+import br.com.zup.rickandmorty.ui.home.adapter.CharacterAdapter
+import br.com.zup.rickandmorty.domain.model.Character
 
 class ListFragment : Fragment() {
     class FotosFragment : Fragment() {
