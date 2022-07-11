@@ -1,8 +1,11 @@
 package br.com.zup.rickandmorty.data.model
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class CharacterResult(
     @SerializedName("created")
     var created: String = "",
@@ -14,12 +17,8 @@ data class CharacterResult(
     var id: Int = 0,
     @SerializedName("image")
     var image: String = "",
-    @SerializedName("location")
-    var location: Location = Location(),
     @SerializedName("name")
     var name: String = "",
-    @SerializedName("origin")
-    var origin: Origin = Origin(),
     @SerializedName("species")
     var species: String = "",
     @SerializedName("status")
@@ -28,4 +27,4 @@ data class CharacterResult(
     var type: String = "",
     @SerializedName("url")
     var url: String = ""
-)
+) : Parcelable
