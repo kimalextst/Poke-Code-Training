@@ -13,7 +13,7 @@ import kotlin.reflect.KFunction1
 
 class CharacterAdapter(
     private var characterList: MutableList<CharacterResult>,
-    private val characterClick: KFunction1<CharacterResult, Unit>
+    private val characterClick: (characterResult : CharacterResult) -> Unit
 ) : RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
@@ -32,17 +32,13 @@ class CharacterAdapter(
     override fun getItemCount(): Int = characterList.size
 
     fun updateCharacterList(newList: MutableList<CharacterResult>) {
-        if (characterList.size == 0) {
-            characterList = newList as MutableList<CharacterResult>
-        } else {
-            characterList.addAll(newList as Collection<CharacterResult>)
-        }
+        characterList = newList
         notifyDataSetChanged()
     }
 
     class CharacterViewHolder(val binding: CharacterItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun showCharacterInfo(characterResult: CharacterResult) {
-            Picasso.get().load(URL_BASE_IMG + characterResult.id + JPEG)
+            Picasso.get().load(characterResult.image)
                 .into(binding.ivCharacter)
             binding.tvCharacterName.text = characterResult.name
         }

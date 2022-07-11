@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Origin(
     @SerializedName("name")
-    val name: String = "",
+    var name: String = "",
     @SerializedName("url")
-    val url: String = ""
+    var url: String = ""
 )

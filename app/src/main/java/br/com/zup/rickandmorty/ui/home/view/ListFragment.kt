@@ -19,7 +19,6 @@ import br.com.zup.rickandmorty.ui.home.adapter.CharacterAdapter
 import br.com.zup.rickandmorty.ui.home.viewmodel.CharacterListViewModel
 
 class ListFragment : Fragment() {
-    class FotosFragment : Fragment() {
 
         private lateinit var binding: FragmentListBinding
 
@@ -42,10 +41,19 @@ class ListFragment : Fragment() {
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
 
-            viewModel.getAllCharacters()
-            initObserver()
-            showRecyclerView()
+//            showRecyclerView()
+//            viewModel.getAllCharacters()
+//            initObserver()
         }
+
+    override fun onResume() {
+        super.onResume()
+
+        showRecyclerView()
+        viewModel.getAllCharacters()
+        initObserver()
+    }
+
 
         private fun initObserver() {
             viewModel.characterList.observe(this.viewLifecycleOwner) {
@@ -81,5 +89,4 @@ class ListFragment : Fragment() {
             }
             startActivity(intent)
         }
-    }
 }

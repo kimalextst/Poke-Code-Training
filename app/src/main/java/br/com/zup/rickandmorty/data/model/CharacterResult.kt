@@ -5,27 +5,27 @@ import com.google.gson.annotations.SerializedName
 
 data class CharacterResult(
     @SerializedName("created")
-    val created: String = "",
+    var created: String = "",
     @SerializedName("episode")
-    val episode: List<String> = listOf(),
+    var episode: List<String> = listOf(),
     @SerializedName("gender")
-    val gender: String = "",
+    var gender: String = "",
     @SerializedName("id")
-    val id: Int = 0,
+    var id: Int = 0,
     @SerializedName("image")
-    val image: String = "",
+    var image: String = "",
     @SerializedName("location")
-    val location: Location = Location(),
+    var location: Location = Location(),
     @SerializedName("name")
-    val name: String = "",
+    var name: String = "",
     @SerializedName("origin")
-    val origin: Origin = Origin(),
+    var origin: Origin = Origin(),
     @SerializedName("species")
-    val species: String = "",
+    var species: String = "",
     @SerializedName("status")
-    val status: String = "",
+    var status: String = "",
     @SerializedName("type")
-    val type: String = "",
+    var type: String = "",
     @SerializedName("url")
-    val url: String = ""
+    var url: String = ""
 )

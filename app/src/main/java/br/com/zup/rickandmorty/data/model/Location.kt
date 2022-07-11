@@ -7,5 +7,5 @@ data class Location(
     @SerializedName("name")
     val name: String = "",
     @SerializedName("url")
-    val url: String = ""
+    var url: String = ""
 )
