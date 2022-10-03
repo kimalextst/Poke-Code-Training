@@ -17,7 +17,9 @@ import br.com.zup.rickandmorty.data.model.CharacterResult
 import br.com.zup.rickandmorty.databinding.FragmentListBinding
 import br.com.zup.rickandmorty.ui.home.adapter.CharacterAdapter
 import br.com.zup.rickandmorty.ui.home.viewmodel.CharacterListViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ListFragment : Fragment() {
 
     private lateinit var binding: FragmentListBinding
