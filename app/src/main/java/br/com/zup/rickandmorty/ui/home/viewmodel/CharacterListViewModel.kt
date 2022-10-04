@@ -12,8 +12,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class CharacterListViewModel @Inject constructor() : ViewModel() {
-    @Inject val characterUseCase = CharacterUseCase()
+class CharacterListViewModel @Inject constructor(private val characterUseCase: CharacterUseCase) : ViewModel() {
     private var _characterList = MutableLiveData<ViewState<List<CharacterResult>>>()
     var characterList = _characterList
 

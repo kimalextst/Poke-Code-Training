@@ -5,10 +5,7 @@ import br.com.zup.rickandmorty.data.model.CharacterResult
 import br.com.zup.rickandmorty.domain.repository.CharacterRepository
 import javax.inject.Inject
 
-class CharacterUseCase() {
-
-    @Inject
-    val characterRepository = CharacterRepository()
+class CharacterUseCase @Inject constructor(private val characterRepository : CharacterRepository) {
 
     suspend fun getAllCharactersNetwork(): ViewState<List<CharacterResult>> {
         return try {
