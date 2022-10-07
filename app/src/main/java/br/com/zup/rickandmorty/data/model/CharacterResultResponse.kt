@@ -1,35 +1,32 @@
 package br.com.zup.rickandmorty.data.model
 
 
-import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
-@Parcelize
 @Entity(tableName = "characters")
-data class CharacterResult(
+data class CharacterResultResponse(
     @SerializedName("id")
     @PrimaryKey(autoGenerate = false)
-    var id: Int = 0,
+    var id: Long = 0,
 
     @SerializedName("created")
-    var created: String = "",
+    var created: String,
     @SerializedName("episode")
     var episode: List<String> = listOf(),
     @SerializedName("gender")
-    var gender: String = "",
+    var gender: String,
     @SerializedName("image")
-    var image: String = "",
+    var image: String,
     @SerializedName("name")
-    var name: String = "",
+    var name: String,
     @SerializedName("species")
-    var species: String = "",
+    var species: String,
     @SerializedName("status")
-    var status: String = "",
+    var status: String,
     @SerializedName("type")
-    var type: String = "",
+    var type: String,
     @SerializedName("url")
-    var url: String = ""
-) : Parcelable
+    var url: String
+)

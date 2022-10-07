@@ -4,13 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.zup.rickandmorty.core.loadImage
-import br.com.zup.rickandmorty.data.model.CharacterResult
 import br.com.zup.rickandmorty.databinding.CharacterItemBinding
-import com.squareup.picasso.Picasso
+import br.com.zup.rickandmorty.domain.model.Character
 
 class CharacterAdapter(
-    private var characterList: MutableList<CharacterResult>,
-    private val characterClick: (characterResult: CharacterResult) -> Unit
+    private var characterList: List<Character>,
+    private val characterClick: (characterResult: Character) -> Unit
 ) : RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
@@ -20,7 +19,7 @@ class CharacterAdapter(
     }
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
-        val character: CharacterResult = characterList[position]
+        val character = characterList[position]
         holder.showCharacterInfo(character)
         holder.binding.cvItemLista.setOnClickListener {
             characterClick(character)
@@ -29,15 +28,10 @@ class CharacterAdapter(
 
     override fun getItemCount(): Int = characterList.size
 
-    fun updateCharacterList(newList: MutableList<CharacterResult>) {
-        characterList = newList
-        notifyDataSetChanged()
-    }
-
     class CharacterViewHolder(val binding: CharacterItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun showCharacterInfo(characterResult: CharacterResult) {
-            binding.ivCharacter.loadImage(characterResult.image)
+        fun showCharacterInfo(characterResult: Character) {
+            binding.ivCharacter.loadImage(characterResult.imageUrl)
             binding.tvCharacterName.text = characterResult.name
         }
     }
