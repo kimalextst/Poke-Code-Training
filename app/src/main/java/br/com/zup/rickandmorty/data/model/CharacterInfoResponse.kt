@@ -3,13 +3,13 @@ package br.com.zup.rickandmorty.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Info(
+data class CharacterInfoResponse(
     @SerializedName("count")
-    var count: Int = 0,
+    var count: Int,
     @SerializedName("next")
-    var next: String = "",
+    var next: String?,
     @SerializedName("pages")
     var pages: Int = 0,
     @SerializedName("prev")
-    var prev: Any? = null
+    var prev: String?
 )

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true"
     tools:context=".ui.home.view.CharacterDetailFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivCharacterPhoto"
             android:layout_width="match_parent"
             android:layout_height="450dp"
@@ -24,89 +25,89 @@
             android:id="@+id/tvNomeLbl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_32"
             android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_32"
             android:text="Nome:"
             android:textStyle="italic"
-            app:layout_constraintTop_toBottomOf="@+id/ivCharacterPhoto"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivCharacterPhoto" />
 
         <TextView
             android:id="@+id/tvNome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Valor generico"
             android:layout_marginStart="@dimen/margin_8"
+            android:text="Valor generico"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/tvNomeLbl"
             app:layout_constraintStart_toEndOf="@id/tvNomeLbl"
-            app:layout_constraintTop_toTopOf="@+id/tvNomeLbl"
-            app:layout_constraintBottom_toBottomOf="@id/tvNomeLbl"/>
+            app:layout_constraintTop_toTopOf="@+id/tvNomeLbl" />
 
         <TextView
             android:id="@+id/tvStatusLbl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_8"
             android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_8"
             android:text="Status:"
             android:textStyle="italic"
-            app:layout_constraintTop_toBottomOf="@+id/tvNomeLbl"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNomeLbl" />
 
         <TextView
             android:id="@+id/tvStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Valor generico"
             android:layout_marginStart="@dimen/margin_8"
+            android:text="Valor generico"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/tvStatusLbl"
             app:layout_constraintStart_toEndOf="@id/tvStatusLbl"
-            app:layout_constraintTop_toTopOf="@+id/tvStatusLbl"
-            app:layout_constraintBottom_toBottomOf="@id/tvStatusLbl"/>
+            app:layout_constraintTop_toTopOf="@+id/tvStatusLbl" />
 
         <TextView
             android:id="@+id/tvEspecieLbl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_8"
             android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_8"
             android:text="Espécie:"
             android:textStyle="italic"
-            app:layout_constraintTop_toBottomOf="@+id/tvStatusLbl"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvStatusLbl" />
 
         <TextView
             android:id="@+id/tvEspecie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Valor generico"
             android:layout_marginStart="@dimen/margin_8"
+            android:text="Valor generico"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/tvEspecieLbl"
             app:layout_constraintStart_toEndOf="@id/tvEspecieLbl"
-            app:layout_constraintTop_toTopOf="@+id/tvEspecieLbl"
-            app:layout_constraintBottom_toBottomOf="@id/tvEspecieLbl"/>
+            app:layout_constraintTop_toTopOf="@+id/tvEspecieLbl" />
 
         <TextView
             android:id="@+id/tvGeneroLbl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_8"
             android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_8"
             android:text="Gênero:"
             android:textStyle="italic"
-            app:layout_constraintTop_toBottomOf="@+id/tvEspecieLbl"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvEspecieLbl" />
 
         <TextView
             android:id="@+id/tvGenero"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Valor generico"
             android:layout_marginStart="@dimen/margin_8"
+            android:text="Valor generico"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/tvGeneroLbl"
             app:layout_constraintStart_toEndOf="@id/tvGeneroLbl"
-            app:layout_constraintTop_toTopOf="@+id/tvGeneroLbl"
-            app:layout_constraintBottom_toBottomOf="@id/tvGeneroLbl"/>
+            app:layout_constraintTop_toTopOf="@+id/tvGeneroLbl" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
