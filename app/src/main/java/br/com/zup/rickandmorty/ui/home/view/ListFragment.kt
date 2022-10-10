@@ -14,8 +14,7 @@ import br.com.zup.rickandmorty.CHARACTER_KEY
 import br.com.zup.rickandmorty.R
 import br.com.zup.rickandmorty.databinding.FragmentListBinding
 import br.com.zup.rickandmorty.domain.model.Character
-import br.com.zup.rickandmorty.ui.home.adapter.AliveCharacterAdapter
-import br.com.zup.rickandmorty.ui.home.adapter.DeadCharacterAdapter
+import br.com.zup.rickandmorty.ui.home.adapter.CharacterAdapter
 import br.com.zup.rickandmorty.ui.home.viewmodel.CharacterListViewModel
 import br.com.zup.rickandmorty.ui.viewstate.ViewState
 import dagger.hilt.android.AndroidEntryPoint
@@ -67,10 +66,7 @@ class ListFragment : Fragment() {
     }
 
     private fun initRecyclerView(data: List<Character>) {
-        val firstAdapter = DeadCharacterAdapter(data, this::goToCharacterDetail)
-        val secondAdapter = AliveCharacterAdapter(data, this::goToCharacterDetail)
-        val concatAdapter = ConcatAdapter(firstAdapter, secondAdapter)
-        binding.rvCharacter.adapter = concatAdapter
+        binding.rvCharacter.adapter = CharacterAdapter(requireContext(),data, this::goToCharacterDetail)
     }
 
     private fun goToCharacterDetail(character: Character) {
