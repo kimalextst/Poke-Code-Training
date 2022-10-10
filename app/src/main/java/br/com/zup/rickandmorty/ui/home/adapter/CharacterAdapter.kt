@@ -1,6 +1,5 @@
 package br.com.zup.rickandmorty.ui.home.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,50 +9,66 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.zup.rickandmorty.R
 import br.com.zup.rickandmorty.core.loadImage
 import br.com.zup.rickandmorty.domain.model.Character
+import br.com.zup.rickandmorty.domain.model.CharacterStatus
 
 class CharacterAdapter(
-    context: Context,
     private var characterList: List<Character>,
     private val characterClick: (characterResult: Character) -> Unit
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+) : RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
 
-    companion object {
-        const val THE_FIRST_VIEW = 1
-        const val THE_SECOND_VIEW = 2
-    }
 
-    private val yourContext: Context = context
+    abstract class CharacterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private var text: TextView = itemView.findViewById(R.id.tvCharacterName)
+        private var image: AppCompatImageView = itemView.findViewById(R.id.ivCharacter)
 
-    private inner class DeadViewHolder(itemView: View) :
-        RecyclerView.ViewHolder(itemView) {
-        var text: TextView = itemView.findViewById(R.id.tvCharacterName)
-        var image: AppCompatImageView = itemView.findViewById(R.id.ivCharacter)
-        fun bind(position: Int) {
-            val recyclerViewModel = characterList[position]
-            text.text = recyclerViewModel.name
-            image.loadImage(recyclerViewModel.imageUrl)
+        open fun bind(character: Character, characterClick: (characterResult: Character) -> Unit) {
+            text.text = character.name
+            image.loadImage(character.imageUrl)
+
+            itemView.setOnClickListener {
+                characterClick(character)
+            }
         }
     }
 
-    private inner class AliveViewHolder(itemView: View) :
-        RecyclerView.ViewHolder(itemView) {
-        var text: TextView = itemView.findViewById(R.id.tvCharacterName)
-        var image: AppCompatImageView = itemView.findViewById(R.id.ivCharacter)
-        fun bind(position: Int) {
-            val recyclerViewModel = characterList[position]
-            text.text = recyclerViewModel.name
-            image.loadImage(recyclerViewModel.imageUrl)
+    private inner class DeadViewHolder(itemView: View) : CharacterViewHolder(itemView) {
+        var label: TextView = itemView.findViewById(R.id.labelStatus)
+
+        override fun bind(
+            character: Character, characterClick: (characterResult: Character) -> Unit
+        ) {
+            val newCharacter = character.copy(
+                name = character.name.uppercase()
+            )
+
+            label.text = "Is DEAD"
+
+            super.bind(newCharacter, characterClick)
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        if (viewType == THE_FIRST_VIEW) {
+    private inner class AliveViewHolder(itemView: View) : CharacterViewHolder(itemView) {
+        var label: TextView = itemView.findViewById(R.id.labelAlive)
+
+        override fun bind(
+            character: Character,
+            characterClick: (characterResult: Character) -> Unit
+        ) {
+            label.text = "Is Alive"
+            super.bind(character, characterClick)
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
+        if (viewType == CharacterStatus.DEAD.ordinal) {
             return DeadViewHolder(
-                LayoutInflater.from(yourContext).inflate(R.layout.dead_character_item, parent, false)
+                LayoutInflater.from(parent.context)
+                    .inflate(R.layout.dead_character_item, parent, false)
             )
         }
         return AliveViewHolder(
-            LayoutInflater.from(yourContext).inflate(R.layout.alive_character_item, parent, false)
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.alive_character_item, parent, false)
         )
     }
 
@@ -61,12 +76,9 @@ class CharacterAdapter(
         return characterList.size
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (characterList[position].status.ordinal == THE_FIRST_VIEW) {
-            (holder as DeadViewHolder).bind(position)
-        } else {
-            (holder as AliveViewHolder).bind(position)
-        }
+    override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
+        val character = characterList[position]
+        holder.bind(character, characterClick)
     }
 
     override fun getItemViewType(position: Int): Int {

@@ -13,6 +13,18 @@
         android:background="@color/red_crismon"
         android:focusable="true">
 
+        <TextView
+            android:id="@+id/labelStatus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="DEAD" />
+
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivCharacter"
             android:layout_width="@dimen/length_150"
@@ -22,7 +34,7 @@
             android:src="@drawable/rick_morty"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/labelStatus" />
 
         <TextView
             android:id="@+id/tvCharacterName"

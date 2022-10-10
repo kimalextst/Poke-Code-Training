@@ -7,9 +7,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment
-import androidx.recyclerview.widget.ConcatAdapter
 import br.com.zup.rickandmorty.CHARACTER_KEY
 import br.com.zup.rickandmorty.R
 import br.com.zup.rickandmorty.databinding.FragmentListBinding
@@ -24,9 +23,7 @@ class ListFragment : Fragment() {
 
     private lateinit var binding: FragmentListBinding
 
-    private val viewModel: CharacterListViewModel by lazy {
-        ViewModelProvider(this)[CharacterListViewModel::class.java]
-    }
+    private val viewModel: CharacterListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,7 +63,7 @@ class ListFragment : Fragment() {
     }
 
     private fun initRecyclerView(data: List<Character>) {
-        binding.rvCharacter.adapter = CharacterAdapter(requireContext(),data, this::goToCharacterDetail)
+        binding.rvCharacter.adapter = CharacterAdapter(data, this::goToCharacterDetail)
     }
 
     private fun goToCharacterDetail(character: Character) {
