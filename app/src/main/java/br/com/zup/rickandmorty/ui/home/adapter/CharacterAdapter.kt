@@ -1,42 +1,88 @@
 package br.com.zup.rickandmorty.ui.home.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
-import br.com.zup.rickandmorty.data.model.CharacterResult
-import br.com.zup.rickandmorty.databinding.CharacterItemBinding
-import com.squareup.picasso.Picasso
+import br.com.zup.rickandmorty.R
+import br.com.zup.rickandmorty.core.loadImage
+import br.com.zup.rickandmorty.domain.model.Character
+import br.com.zup.rickandmorty.domain.model.CharacterStatus
 
 class CharacterAdapter(
-    private var characterList: MutableList<CharacterResult>,
-    private val characterClick: (characterResult : CharacterResult) -> Unit
+    private var characterList: List<Character>,
+    private val characterClick: (characterResult: Character) -> Unit
 ) : RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
 
+
+    abstract class CharacterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private var text: TextView = itemView.findViewById(R.id.tvCharacterName)
+        private var image: AppCompatImageView = itemView.findViewById(R.id.ivCharacter)
+
+        open fun bind(character: Character, characterClick: (characterResult: Character) -> Unit) {
+            text.text = character.name
+            image.loadImage(character.imageUrl)
+
+            itemView.setOnClickListener {
+                characterClick(character)
+            }
+        }
+    }
+
+    private inner class DeadViewHolder(itemView: View) : CharacterViewHolder(itemView) {
+        var label: TextView = itemView.findViewById(R.id.labelStatus)
+
+        override fun bind(
+            character: Character, characterClick: (characterResult: Character) -> Unit
+        ) {
+            val newCharacter = character.copy(
+                name = character.name.uppercase()
+            )
+
+            label.text = "Is DEAD"
+
+            super.bind(newCharacter, characterClick)
+        }
+    }
+
+    private inner class AliveViewHolder(itemView: View) : CharacterViewHolder(itemView) {
+        var label: TextView = itemView.findViewById(R.id.labelAlive)
+
+        override fun bind(
+            character: Character,
+            characterClick: (characterResult: Character) -> Unit
+        ) {
+            label.text = "Is Alive"
+            super.bind(character, characterClick)
+        }
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
-        val binding = CharacterItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return CharacterViewHolder(binding)
+        if (viewType == CharacterStatus.DEAD.ordinal) {
+            return DeadViewHolder(
+                LayoutInflater.from(parent.context)
+                    .inflate(R.layout.dead_character_item, parent, false)
+            )
+        }
+        return AliveViewHolder(
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.alive_character_item, parent, false)
+        )
+    }
+
+    override fun getItemCount(): Int {
+        return characterList.size
     }
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
-        val character : CharacterResult = characterList[position]
-        holder.showCharacterInfo(character)
-        holder.binding.cvItemLista.setOnClickListener {
-            characterClick(character)
-        }
+        val character = characterList[position]
+        holder.bind(character, characterClick)
     }
 
-    override fun getItemCount(): Int = characterList.size
-
-    fun updateCharacterList(newList: MutableList<CharacterResult>) {
-        characterList = newList
-        notifyDataSetChanged()
-    }
-
-    class CharacterViewHolder(val binding: CharacterItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun showCharacterInfo(characterResult: CharacterResult) {
-            Picasso.get().load(characterResult.image)
-                .into(binding.ivCharacter)
-            binding.tvCharacterName.text = characterResult.name
-        }
+    override fun getItemViewType(position: Int): Int {
+        return characterList[position].status.ordinal
     }
 }
+
