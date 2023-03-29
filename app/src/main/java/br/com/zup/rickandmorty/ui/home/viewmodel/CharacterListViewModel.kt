@@ -11,6 +11,8 @@ import br.com.zup.rickandmorty.ui.viewstate.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -18,20 +20,19 @@ import kotlinx.coroutines.withContext
 class CharacterListViewModel @Inject constructor(
     private val characterUseCase: CharacterUseCase
 ) : ViewModel() {
-    private var _characterList = MutableLiveData<ViewState<List<Character>>>()
-    var characterList: LiveData<ViewState<List<Character>>> = _characterList
+    private var _characterList = MutableStateFlow<ViewState<List<Character>>>(ViewState.Loading(true))
+    var characterList = _characterList.asStateFlow()
 
     fun getAllCharacters() {
         viewModelScope.launch {
-            try {
-                val response = withContext(Dispatchers.IO) {
-                    characterUseCase.getAllCharactersNetwork()
+            characterUseCase.getAllCharactersNetwork()
+                .flowOn(Dispatchers.IO)
+                .catch {
+                    Log.v("ERRO", "teste teste teste")
+                    _characterList.value = ViewState.Error(Throwable("Error"))
+                }.collect {
+                    _characterList.value = ViewState.Success(it)
                 }
-                _characterList.value = response
-            } catch (e: Exception) {
-                Log.v("ERRO", "teste teste teste")
-                _characterList.value = ViewState.Error(Throwable("Error"))
-            }
         }
     }
 }
