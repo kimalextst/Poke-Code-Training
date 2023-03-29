@@ -8,6 +8,9 @@ import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.lifecycle.whenStarted
 import androidx.navigation.fragment.NavHostFragment
 import br.com.zup.rickandmorty.CHARACTER_KEY
 import br.com.zup.rickandmorty.R
@@ -17,6 +20,7 @@ import br.com.zup.rickandmorty.ui.home.adapter.CharacterAdapter
 import br.com.zup.rickandmorty.ui.home.viewmodel.CharacterListViewModel
 import br.com.zup.rickandmorty.ui.viewstate.ViewState
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class ListFragment : Fragment() {
@@ -44,20 +48,21 @@ class ListFragment : Fragment() {
     }
 
     private fun initObserver() {
-        viewModel.characterList.observe(this.viewLifecycleOwner) {
-
-            when (it) {
-                is ViewState.Success -> {
-                    initRecyclerView(it.data)
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.characterList.collect {
+                when (it) {
+                    is ViewState.Success -> {
+                        initRecyclerView(it.data)
+                    }
+                    is ViewState.Error -> {
+                        Toast.makeText(
+                            context,
+                            "${it.throwable.message}",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    else -> {}
                 }
-                is ViewState.Error -> {
-                    Toast.makeText(
-                        context,
-                        "${it.throwable.message}",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-                else -> {}
             }
         }
     }
