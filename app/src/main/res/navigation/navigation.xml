@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/listFragment"
-        android:name="br.com.zup.rickandmorty.ui.home.view.ListFragment"
+        android:name="br.com.kimalextst.pokecodetraining.ui.home.view.ListFragment"
         android:label="fragment_list"
         tools:layout="@layout/fragment_list" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/characterDetailFragment"
-        android:name="br.com.zup.rickandmorty.ui.home.view.CharacterDetailFragment"
+        android:name="br.com.kimalextst.pokecodetraining.ui.home.view.CharacterDetailFragment"
         android:label="fragment_character_detail"
         tools:layout="@layout/fragment_character_detail" />
 </navigation>
