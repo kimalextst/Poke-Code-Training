@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitService {
     companion object {
-        private const val BASE_URL = "https://rickandmortyapi.com/api/"
+        private const val BASE_URL = "https://pokeapi.co/api/v2/"
 
         private val retrofit: Retrofit by lazy {
             val httpClient = OkHttpClient.Builder()
