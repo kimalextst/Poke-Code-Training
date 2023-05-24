@@ -1,6 +1,5 @@
 package br.com.kimalextst.pokecodetraining.data.model
 
-
 import com.google.gson.annotations.SerializedName
 
 data class CharacterResponse(

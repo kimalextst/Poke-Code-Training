@@ -10,7 +10,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "br.com.zup.rickandmorty"
+        applicationId "br.com.kimalextst.rickandmorty"
         minSdk 21
         targetSdk 33
         versionCode 1
@@ -30,7 +30,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
 
     android {
@@ -38,6 +38,7 @@ android {
             enabled = true
         }
     }
+    namespace 'br.com.kimalextst.pokecodetraining'
 }
 
 dependencies {
